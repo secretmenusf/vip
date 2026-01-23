@@ -24,10 +24,10 @@ const steps: Step[] = [
     number: '01',
     icon: Sparkles,
     title: 'Choose Your Plan',
-    description: 'Select from Essential, Standard, or Premium membership',
+    description: 'Select Access, Plus, Solo Dev, or Hacker House',
     details: [
-      '3, 5, or 7 meals per week',
-      'Flexible scheduling',
+      'From $29/mo',
+      'Meal credits included on higher tiers',
       'Cancel anytime',
     ],
   },
@@ -213,14 +213,14 @@ export function HowItWorksSection({ className }: { className?: string }) {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <Link to="/order">
+          <Link to="/pricing">
             <Button size="lg" className="px-10 font-display tracking-wider">
-              START YOUR JOURNEY
+              JOIN FROM $29/MO
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
           <p className="font-body text-sm text-muted-foreground mt-4">
-            No commitment required • Skip or cancel anytime
+            Cancel anytime • Chef AI included
           </p>
         </div>
       </div>

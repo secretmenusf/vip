@@ -45,9 +45,9 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Link to="/order">
+              <Link to="/pricing">
                 <Button size="lg" className="px-10 font-display tracking-wider text-base">
-                  START YOUR JOURNEY
+                  JOIN THE SECRET MENU
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>

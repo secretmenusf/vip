@@ -33,12 +33,12 @@ export const pageSEO: Record<string, SEOHeadProps> = {
   },
   order: {
     title: 'Order Meals | SF Secret Menu',
-    description: 'Start your culinary journey. Subscribe from $9/mo to access Chef Antje\'s secret weekly menus. Member ($29/mo) unlocks SF delivery. Chef-prepared organic meals with universal credits.',
+    description: 'Start your culinary journey. Subscribe from $29/mo to access Chef Antje\'s secret weekly menus. Chef-prepared organic meals with Chef AI included. SF Bay Area delivery.',
     keywords: 'order meals san francisco, meal subscription sf, organic meal plan, healthy food delivery, weekly meal delivery',
   },
   pricing: {
     title: 'Membership & Pricing | SF Secret Menu',
-    description: 'Join the inner circle. Explorer $9/mo (browse & cook), Member $29/mo (delivery), Pro $79/mo ($50 credits), Developer $399/mo (feed yourself), Startup $999/mo (teams). Cancel anytime.',
+    description: 'Join the Secret Menu. Access $29/mo (menu + ordering + Chef AI), Plus $79/mo (meal credit included), Solo Dev $399/mo (power user), Hacker House $999/mo (teams). SF Bay Area delivery. Cancel anytime.',
     keywords: 'meal plan pricing, organic meal subscription cost, private chef pricing, weekly meal delivery cost',
   },
   compare: {

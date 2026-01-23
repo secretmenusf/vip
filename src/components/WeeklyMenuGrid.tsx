@@ -480,32 +480,58 @@ const MenuDetailModal = ({
               {item.options && item.options.length > 0 && (
                 <div className="mb-8 space-y-6">
                   <h3 className="text-sm font-medium text-foreground uppercase tracking-wide">Customize Your Order</h3>
-                  {Object.entries(groupedOptions).map(([category, options]) => (
-                    <div key={category}>
-                      <h4 className="text-base font-medium text-foreground mb-3">
-                        {categoryLabels[category] || category}
-                      </h4>
-                      <div className="space-y-2">
-                        {options.map((option) => (
-                          option.allowMultiple ? (
-                            <QuantityOption
-                              key={option.id}
-                              option={option}
-                              quantity={selectedOptions[option.id] || 0}
-                              onChange={(qty) => updateOption(option.id, qty)}
-                            />
-                          ) : (
-                            <CheckboxOption
-                              key={option.id}
-                              option={option}
-                              checked={(selectedOptions[option.id] || 0) > 0}
-                              onChange={(checked) => updateOption(option.id, checked ? 1 : 0)}
-                            />
-                          )
-                        ))}
+                  {user && isSubscribed && canCustomizeOrders ? (
+                    // Show customization options for subscribers
+                    Object.entries(groupedOptions).map(([category, options]) => (
+                      <div key={category}>
+                        <h4 className="text-base font-medium text-foreground mb-3">
+                          {categoryLabels[category] || category}
+                        </h4>
+                        <div className="space-y-2">
+                          {options.map((option) => (
+                            option.allowMultiple ? (
+                              <QuantityOption
+                                key={option.id}
+                                option={option}
+                                quantity={selectedOptions[option.id] || 0}
+                                onChange={(qty) => updateOption(option.id, qty)}
+                              />
+                            ) : (
+                              <CheckboxOption
+                                key={option.id}
+                                option={option}
+                                checked={(selectedOptions[option.id] || 0) > 0}
+                                onChange={(checked) => updateOption(option.id, checked ? 1 : 0)}
+                              />
+                            )
+                          ))}
+                        </div>
                       </div>
+                    ))
+                  ) : (
+                    // Show subscribe CTA for non-subscribers
+                    <div className="p-6 bg-muted/50 rounded-xl border border-border/50 text-center">
+                      <Lock size={32} className="mx-auto mb-3 text-muted-foreground" />
+                      <h4 className="text-base font-medium text-foreground mb-2">
+                        Subscribe to Customize
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {!user
+                          ? "Join SF Secret Menu to customize your meals with add-ons, protein upgrades, and more."
+                          : "Upgrade your subscription to unlock meal customization options."}
+                      </p>
+                      <button
+                        onClick={() => {
+                          onClose();
+                          navigate(user ? '/pricing' : '/login', { state: { from: { pathname: '/menu' } } });
+                        }}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-full font-medium hover:bg-emerald-700 transition-colors"
+                      >
+                        <ChefHat size={18} />
+                        {user ? 'View Plans' : 'Get Started'}
+                      </button>
                     </div>
-                  ))}
+                  )}
                 </div>
               )}
 
@@ -977,9 +1003,9 @@ const WeeklyMenuGrid = () => {
               <Lock size={14} className="text-mystical" />
               <span className="text-sm text-muted-foreground">
                 <button onClick={() => navigate('/pricing')} className="text-mystical hover:underline">
-                  Subscribe from $9/mo
+                  Join from $29/mo
                 </button>
-                {' '}to view recipes & order
+                {' '}to unlock menus & order
               </span>
             </div>
           )}
@@ -997,16 +1023,16 @@ const WeeklyMenuGrid = () => {
             </div>
           )}
 
-          {/* Explorer tier upsell - can't order but can cook */}
+          {/* Subscribed but outside service area */}
           {isSubscribed && !canOrderDelivery && (
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-full mb-6">
               <Globe size={14} className="text-muted-foreground" />
               <span className="text-sm text-muted-foreground">
-                Browsing from outside SF?{' '}
-                <button onClick={() => navigate('/pricing')} className="text-foreground hover:underline">
-                  Upgrade to Member ($29/mo)
+                Delivery is SF Bay Area only.{' '}
+                <button onClick={() => navigate('/global')} className="text-foreground hover:underline">
+                  Join waitlist
                 </button>
-                {' '}for delivery
+                {' '}for your city
               </span>
             </div>
           )}

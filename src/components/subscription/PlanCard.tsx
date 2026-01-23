@@ -1,4 +1,4 @@
-import { Check, CreditCard, Sparkles, Truck, Bot } from 'lucide-react';
+import { Check, X, CreditCard, Sparkles, Truck, Bot } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -32,7 +32,7 @@ const PlanCard = ({ plan, compact = false }: PlanCardProps) => {
     setShowCheckout(false);
     toast({
       title: 'Subscription Created!',
-      description: `Welcome to the ${plan.name} plan. ${plan.canOrderDelivery ? "You can now order for next week's menu." : "Start exploring menus and talking to Chef AI."}`,
+      description: `Welcome to the ${plan.name} plan. You can now order for next week's menu.`,
     });
   };
 
@@ -110,7 +110,7 @@ const PlanCard = ({ plan, compact = false }: PlanCardProps) => {
       )}
 
       {/* Features */}
-      <ul className={`flex-1 space-y-2 mb-6 ${compact ? 'text-xs' : ''}`}>
+      <ul className={`flex-1 space-y-2 mb-4 ${compact ? 'text-xs' : ''}`}>
         {plan.features.slice(0, compact ? 4 : undefined).map((feature, index) => (
           <li key={index} className="flex items-start gap-2">
             <div className="flex-shrink-0 w-4 h-4 rounded-full border border-border/50 flex items-center justify-center mt-0.5">
@@ -128,10 +128,24 @@ const PlanCard = ({ plan, compact = false }: PlanCardProps) => {
         )}
       </ul>
 
-      {/* Delivery info for plans that can't order */}
-      {!plan.canOrderDelivery && (
-        <p className="text-xs text-center text-muted-foreground/60 mb-4">
-          Delivery requires Member plan ($29/mo)
+      {/* Not included */}
+      {plan.notIncluded && plan.notIncluded.length > 0 && (
+        <ul className={`space-y-1 mb-4 ${compact ? 'text-xs' : ''}`}>
+          {plan.notIncluded.map((item, index) => (
+            <li key={index} className="flex items-start gap-2">
+              <X size={12} className="flex-shrink-0 text-muted-foreground/50 mt-0.5" />
+              <span className={`font-body text-muted-foreground/60 ${compact ? 'text-[10px]' : 'text-xs'}`}>
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Delivery info */}
+      {plan.deliveryFee > 0 && (
+        <p className="text-[10px] text-center text-muted-foreground/50 mb-4">
+          SF Bay Area delivery: $10/order
         </p>
       )}
 
@@ -149,11 +163,7 @@ const PlanCard = ({ plan, compact = false }: PlanCardProps) => {
               size={compact ? 'sm' : 'default'}
             >
               <CreditCard size={14} className="mr-2" />
-              {plan.price === 9 ? 'START EXPLORING' :
-               plan.price === 29 ? 'UNLOCK DELIVERY' :
-               plan.price === 79 ? 'GET CREDITS' :
-               plan.price === 399 ? 'FEED ME' :
-               'FEED THE TEAM'}
+              {plan.ctaText?.toUpperCase() || 'SUBSCRIBE'}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg border-mystical/30">
@@ -177,11 +187,7 @@ const PlanCard = ({ plan, compact = false }: PlanCardProps) => {
           size={compact ? 'sm' : 'default'}
         >
           <CreditCard size={14} className="mr-2" />
-          {plan.price === 9 ? 'START EXPLORING' :
-           plan.price === 29 ? 'UNLOCK DELIVERY' :
-           plan.price === 79 ? 'GET CREDITS' :
-           plan.price === 399 ? 'FEED ME' :
-           'FEED THE TEAM'}
+          {plan.ctaText?.toUpperCase() || 'SUBSCRIBE'}
         </Button>
       )}
     </div>

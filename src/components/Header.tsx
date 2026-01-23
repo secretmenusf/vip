@@ -43,7 +43,7 @@ const Header = () => {
   };
 
   const goToOrder = () => {
-    navigate('/order');
+    navigate('/pricing');
   };
 
   return (

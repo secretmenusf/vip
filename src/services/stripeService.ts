@@ -23,13 +23,12 @@ export const getStripe = () => {
 };
 
 // Stripe Price IDs (these should match your Stripe Dashboard)
-// Maps to new subscription tiers: explorer, member, pro, developer, startup
+// Maps to subscription tiers: access, plus, solodev, hackerhouse
 export const STRIPE_PRICE_IDS = {
-  explorer: import.meta.env.VITE_STRIPE_PRICE_EXPLORER || 'price_explorer_2026',
-  member: import.meta.env.VITE_STRIPE_PRICE_MEMBER || 'price_member_2026',
-  pro: import.meta.env.VITE_STRIPE_PRICE_PRO || 'price_pro_2026',
-  developer: import.meta.env.VITE_STRIPE_PRICE_DEVELOPER || 'price_developer_2026',
-  startup: import.meta.env.VITE_STRIPE_PRICE_STARTUP || 'price_startup_2026',
+  access: import.meta.env.VITE_STRIPE_PRICE_ACCESS || 'price_access_2026',
+  plus: import.meta.env.VITE_STRIPE_PRICE_PLUS || 'price_plus_2026',
+  solodev: import.meta.env.VITE_STRIPE_PRICE_SOLODEV || 'price_solodev_2026',
+  hackerhouse: import.meta.env.VITE_STRIPE_PRICE_HACKERHOUSE || 'price_hackerhouse_2026',
 } as const;
 
 export interface StripeCustomer {

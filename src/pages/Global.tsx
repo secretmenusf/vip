@@ -393,17 +393,16 @@ const Global = () => {
         <div className="container mx-auto px-6 max-w-4xl mt-16">
           <div className="border border-border/30 rounded-lg p-8 md:p-12 bg-card/20">
             <h2 className="font-display text-xl tracking-[0.2em] text-foreground text-center mb-8">
-              AVAILABLE EVERYWHERE
+              JOIN THE WAITLIST
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="font-display text-sm tracking-wider mb-2 text-mystical">
-                  NOT IN A DELIVERY CITY?
+                  NOT IN SF YET?
                 </h3>
                 <p className="font-body text-sm text-muted-foreground">
-                  The $9/mo Explorer plan gives you full access to Chef Antje's weekly menus and AI cooking
-                  assistant. Get recipes, nutrition advice, and learn to cook each dish at home—no matter where
-                  you are in the world.
+                  Join the waitlist for your city to get early access and exclusive launch pricing when we arrive.
+                  Be first in line for Chef Antje's weekly drops.
                 </p>
               </div>
               <div>
@@ -411,8 +410,8 @@ const Global = () => {
                   WHEN WE LAUNCH IN YOUR CITY
                 </h3>
                 <p className="font-body text-sm text-muted-foreground">
-                  Waitlist members get early access and exclusive launch pricing. Upgrade to Member ($29/mo)
-                  when we arrive to unlock delivery. Your Explorer subscription credits transfer automatically.
+                  Waitlist members get early access and exclusive launch pricing. Subscribe to Access ($29/mo)
+                  when we arrive to unlock ordering. Chef AI included in every plan.
                 </p>
               </div>
             </div>
@@ -420,7 +419,7 @@ const Global = () => {
               <Button asChild className="rounded-full font-display tracking-wider bg-mystical text-background hover:bg-mystical/90">
                 <Link to="/pricing">
                   <Sparkles size={14} className="mr-2" />
-                  START WITH EXPLORER - $9/MO
+                  VIEW PLANS — FROM $29/MO
                 </Link>
               </Button>
             </div>

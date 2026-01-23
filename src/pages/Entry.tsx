@@ -10,7 +10,7 @@ const Entry = () => {
     if (access !== 'true') {
       navigate('/login', { replace: true });
     } else {
-      navigate('/order', { replace: true });
+      navigate('/pricing', { replace: true });
     }
   }, [navigate]);
 
